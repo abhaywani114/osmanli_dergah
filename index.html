@@ -12,13 +12,12 @@
 </head>
 <body class="bg-center" style="background-image: url('img/bg.jpg');    background-position: 3% 78%;
     background-repeat: no-repeat;
-    background-zoom: 2;
     background-attachment: fixed;
   ">
     <header id="app">
-		<div class="px-1 md:px-64  h-6/12 z-20">
+		<div class="px-1 md:px-64 z-20">
 
-			<div class="flex justify-between align-middle md:mx-32 z-20 m-6">
+			<div class="flex justify-between align-middle md:mx-32 z-20 my-6">
 
 			<span class="mt-10 z-20 item-center" onclick="osmanli_cal.pre_month()" style='cursor:pointer;'>
 			<svg  class="text-white h-24 md:h-48 " fill="none" stroke-linecap="round" 
@@ -38,17 +37,17 @@
 			<div class="mx-auto bg-white p-4  text-green-700  flex justify-between shadow-xl z-20 w-full">
 				<div class="grid grid-cols-3 w-full">
 				<div class="text-left">
-					<span class="text-lg font-extrabold z-20 tracking-wide text-blue-600 cursor-pointer" onclick="osmanli_cal.click_month()">{{month}}</span>
+					<span class="text-md font-extrabold z-20 tracking-wide text-blue-600 cursor-pointer" onclick="osmanli_cal.click_month()">{{month}}</span>
 				</div>
 				<div class="text-center">
-					<span class="text-lg text-blue-600 cursor-pointer font-extrabold z-20"
+					<span class="text-md text-blue-600 cursor-pointer font-extrabold z-20"
 						 onclick="osmanli_cal.toggleCalender()">{{calender}}</span>
 				</div>
 				<div class="text-right">
-				<span class="text-xl font-extrabold z-20 tracking-wide">{{year}}</span></div>
+				<span class="text-md font-extrabold z-20 tracking-wide">{{year}}</span></div>
 				</div>
 				</div>
-			<div class="grid top-0 z-20 grid-cols-7 gap-5 mx-auto  
+			<div class="grid top-0 z-20 grid-cols-7 gap-2 mx-auto  
 					border-b border-l border-r bg-green-600 pt-4 pb-4 
 					shadow-3xl  justify-center item-center align-center text-center pl-1 pr-1 ">
 				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-extrabold mx-auto z-20">S</div>
