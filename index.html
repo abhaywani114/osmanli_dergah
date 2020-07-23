@@ -399,8 +399,12 @@ el: '#app',
 		     if(this.calender == 'Hijri') {
 			     	this.hijri_cal.date = new Date(date);
 				this.lastday_hijri();
-				this.month = this.hijri_cal.month;
-				this.year = this.hijri_cal.year;
+		    
+			     	month = new Intl.DateTimeFormat('en-FR-u-ca-islamicc', {
+		     					month: 'numeric'
+		     		}).format(this.hijri_cal.date);
+				this.month = islamic_month_name(month)
+				this.year = this.hijri_cal.year.replace(' AH','') + ' AH' ;
 
 			} else 	{ 
 				this.english_cal.date = new Date(date)
@@ -464,6 +468,11 @@ var english_month_name = function(dt){
 	mlist = [ "January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
   	return mlist[dt.getMonth()];
 };
+
+var islamic_month_name = function(dt) {
+	mlist = ["Muharram","Safar","Rabi`I", "Rabiʻ II", "Jumada I", "Jumada II","Rajab", "Shaʻban", "Ramadan", "Shawwal","Dhuʻl-Qiʻdah","Dhuʻl-Hijjah"]
+	return mlist[dt-1];
+}
 
 osmanli_cal.change_date(new Date())
 	</script>
