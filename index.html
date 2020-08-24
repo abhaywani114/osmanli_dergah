@@ -59,7 +59,7 @@
 				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-extrabold mx-auto z-20">S</div>
 
 				<div class="text-white p-2 text-lg font-bold text-center cursor-pointer w-10 mx-auto z-20" 
-					v-on:click="click_date(x)" v-for="x in month_days ">{{x}}</div>
+					v-bind:class="has_event(x) ==  true ? 'bg-white text-green-700 ':'text-white bg-green-600'" v-on:click="click_date(x)" v-for="x in month_days ">{{x}}</div>
 
 			</div>
 		</div>
@@ -452,29 +452,52 @@ el: '#app',
 			this.change_date(this.english_cal.date)
 		    }
 
-	    }
-	  }
-   });
+	    },
+		has_event: function(day) {
+		 if (this.calender == 'Hijri') { 
+			 
+				month = new Intl.DateTimeFormat('en-FR-u-ca-islamicc', {
+									month: 'numeric'
+				}).format(this.hijri_cal.date);
+				event_line = this.events_hijri[month][day];
+			
+			} else {
+			
+				month = this.english_cal.date.getMonth();
+				event_line = this.events_english[month][day];
 
-var getDaysInMonth = function(month,year) {
-	// Here January is 1 based
-	//Day 0 is the last day in the previous month
-	return new Date(year, month+1, 0).getDate();
-	// Here January is 0 based
-	// return new Date(year, month+1, 0).getDate();
-};
+			}
 
-var english_month_name = function(dt){
-	mlist = [ "January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-  	return mlist[dt.getMonth()];
-};
 
-var islamic_month_name = function(dt) {
-	mlist = ["Muharram","Safar","Rabi`I", "Rabiʻ II", "Jumada I", "Jumada II","Rajab", "Shaʻban", "Ramadan", "Shawwal","Dhuʻl-Qiʻdah","Dhuʻl-Hijjah"]
-	return mlist[dt-1];
-}
+			if (event_line != undefined) {
+				return true;
+			} else {
+				return false;
+			}
 
-osmanli_cal.change_date(new Date())
-	</script>
-</body>
-</html>
+			}
+		  }
+	   });
+
+	var getDaysInMonth = function(month,year) {
+		// Here January is 1 based
+		//Day 0 is the last day in the previous month
+		return new Date(year, month+1, 0).getDate();
+		// Here January is 0 based
+		// return new Date(year, month+1, 0).getDate();
+	};
+
+	var english_month_name = function(dt){
+		mlist = [ "January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+		return mlist[dt.getMonth()];
+	};
+
+	var islamic_month_name = function(dt) {
+		mlist = ["Muharram","Safar","Rabi`I", "Rabiʻ II", "Jumada I", "Jumada II","Rajab", "Shaʻban", "Ramadan", "Shawwal","Dhuʻl-Qiʻdah","Dhuʻl-Hijjah"]
+		return mlist[dt-1];
+	}
+
+	osmanli_cal.change_date(new Date())
+		</script>
+	</body>
+	</html>
