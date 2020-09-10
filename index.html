@@ -104,7 +104,6 @@
 </div>
 <div style="padding:30px"></div>
 </header>
-<!--hi--->
 <script>
 var osmanli_cal = new Vue({
 el: '#app',
@@ -244,6 +243,7 @@ el: '#app',
 				30:"Veling of Sahib el-Sayf Sheykh Abdul Kerim el-Kibrisi el-Rabbani (KS)",
 
 			},
+			8: {},
 			7: {
 				10: "Establishment of Osmanli Dergahi"
 			},
@@ -315,7 +315,7 @@ el: '#app',
 			this.change_date(this.english_cal.date);
 	     } else {
 
-		     	this.hijri_cal.date = this.english_cal.date;
+		    this.hijri_cal.date = this.english_cal.date;
 			this.calender = "Hijri";
 			this.change_date(this.hijri_cal.date);
 	     }
@@ -454,6 +454,11 @@ el: '#app',
 
 	    },
 		has_event: function(day) {
+			
+			if (day == '') {
+				return
+			}
+
 		 if (this.calender == 'Hijri') { 
 			 
 				month = new Intl.DateTimeFormat('en-FR-u-ca-islamicc', {
