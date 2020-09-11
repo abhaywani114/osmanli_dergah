@@ -14,6 +14,11 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script> -->
 <style>
 html {font-family: 'Montserrat',sans-serif;}
+@media (min-width:700px) {
+	.custom_padding {padding:0em 20%}
+}
+
+
 </style>
 </head>
 
@@ -22,9 +27,9 @@ html {font-family: 'Montserrat',sans-serif;}
     background-attachment: fixed;
   ">
     <header id="app">
-		<div class="px-1 md:px-64 z-20">
+		<div class="px-1 z-20 custom_padding">
 
-			<div class="flex justify-between align-middle md:mx-32 z-20 my-6">
+			<div class="flex justify-between align-middle  z-20 my-6">
 
 			<span class="mt-10 z-20 item-center" onclick="osmanli_cal.pre_month()" style='cursor:pointer;'>
 			<svg  class="text-white h-24 md:h-48 " fill="none" stroke-linecap="round" 
@@ -40,7 +45,7 @@ html {font-family: 'Montserrat',sans-serif;}
 
 			</div>
 
-			<div class="md:mx-32 z-20 ">
+			<div class=" z-20 ">
 			<div class="mx-auto bg-white p-4  text-green-700  flex justify-between shadow-xl z-20 w-full">
 				<div class="grid grid-cols-3 w-full">
 				<div class="text-left">
@@ -91,8 +96,8 @@ html {font-family: 'Montserrat',sans-serif;}
 
 </div>
 
-<div id="card_2" v-if="card_2" class="fixed flex overflow-auto top-0 h-full w-full z-50 bg-gray-700 bg-opacity-75 items-center mx-auto">
-    <div class="bg-gray-100 my-24 mx-4 max-w-2xl w-full overflow-hidden md:mx-auto">
+<div id="card_2" v-if="card_2" class="fixed  inset-0 overflow-auto top-0 h-full w-full z-50 bg-gray-700 bg-opacity-75 items-center mx-auto">
+    <div class="bg-gray-100 mx-4 max-w-2xl w-full overflow-hidden md:mx-auto" style="width: 95%;margin: auto;margin-top: 5%;margin-bottom:10%;">
         <div class="flex items-center bg-green-600 text-white py-1 px-2">
             <h1 class="text-lg font-sem ibold tracking-wider font-mono">Month Events Overview</h1>
             <span id="close" v-on:click="card_2 = false;" class="ml-auto inline-block text-right cursor-pointer text-white px-2 text-lg tracking-wide font-semibold uppercase cursor-pointer">&cross;</span>
