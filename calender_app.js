@@ -1,124 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osmanli Calender</title>
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' typ  e='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/main_dist.css">
-	<!-- <script src="/js/jquery.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<!-- 	<script type="text/javascript" src="{{asset('/js/osmanli_calendar.js')}}"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script> -->
-<style>
-html {font-family: 'Montserrat',sans-serif;}
-@media (min-width:700px) {
-	.custom_padding {padding:0em 20%}
-}
-
-
-</style>
-</head>
-
-<body class="bg-center" style="background-image: url('img/bg.jpg');    background-position: 3% 78%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  ">
-    <header id="app">
-		<div class="px-1 z-20 custom_padding">
-
-			<div class="flex justify-between align-middle  z-20 my-6">
-
-			<span class="mt-10 z-20 item-center" onclick="osmanli_cal.pre_month()" style='cursor:pointer;'>
-			<svg  class="text-white h-24 md:h-48 " fill="none" stroke-linecap="round" 
-				stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" 
-				stroke="currentColor"><path d="M15 19l-7-7 7-7"></path></svg></span>
-
-			<img src="img/Osmanli Dergahi Logo.png" class="mx-auto h-40 md:h-56 ` z-20 ">
-
-			<span class=" mt-10 z-20" onclick="osmanli_cal.next_month()" style='cursor:pointer'>
-				<svg class="text-white h-24 md:h-48" fill="none" stroke-linecap="round" 
-					stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" 
-					stroke="currentColor"><path d="M9 5l7 7-7 7"></path></svg></span>
-
-			</div>
-
-			<div class=" z-20 ">
-			<div class="mx-auto bg-white p-4  text-green-700  flex justify-between shadow-xl z-20 w-full">
-				<div class="grid grid-cols-3 w-full">
-				<div class="text-left">
-					<span class="text-md  z-20 tracking-wider text-blue-600 cursor-pointer" onclick="osmanli_cal.click_month()">{{month}}</span>
-				</div>
-				<div class="text-center">
-					<span class="text-md text-blue-600 cursor-pointer font-extrabold z-20 tracking-wider"
-						 onclick="osmanli_cal.toggleCalender()">{{calender}}</span>
-				</div>
-				<div class="text-right">
-				<span class="text-md  z-20 tracking-wider">{{year}}</span></div>
-				</div>
-				</div>
-			<div class="grid top-0 z-20 grid-cols-7 gap-2 mx-auto  
-					border-b border-l border-r bg-green-600 pt-4 pb-4 
-					shadow-3xl  justify-center item-center align-center text-center pl-1 pr-1 ">
-				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-semibold mx-auto z-20">S</div>
-				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-semibold mx-auto z-20">M</div>
-				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-semibold mx-auto z-20">T</div>
-				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-semibold mx-auto z-20">W</div>
-				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-semibold mx-auto z-20">T</div>
-				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-semibold mx-auto z-20">F</div>
-				<div class="text-white p-2 text-lg bg-white text-green-700 text-center w-10 font-semibold mx-auto z-20">S</div>
-
-				<div class="text-white p-2 text-lg font- semi bold text-center cursor-pointer w-10 mx-auto z-20" 
-					v-bind:class="has_event(x) ==  true ? 'bg-white text-green-700 ':'text-white bg-green-600'" v-on:click="click_date(x)" v-for="x in month_days ">{{x}}</div>
-
-			</div>
-		</div>
-	</div>
-
-<div id="card_1" v-if="card_1" class="fixed flex overflow-auto top-0 h-full w-full z-50 bg-gray-700 bg-opacity-75 items-center ">
-    <div class="bg-gray-100 my-24 mx-4 max-w-2xl w-full overflow-hidden md:mx-auto">
-        <div class="flex items-center bg-green-600 text-white py-1 px-2">
-            <h1 class="text-lg  tracking-wider font-mono">Event</h1>
-            <span id="close" v-on:click="card_1 = false;" class="ml-auto inline-block text-right cursor-pointer text-white px-2 text-lg tracking-wide font-semibold uppercase cursor-pointer">&cross;</span>
-        </div>
-
-        <div class="px-2 py-10 text-center">
-			<h1 class="text-blue-700 font-bold text-2xl inline-flex">{{sel_day}}th of {{month}}</h1> 
-			<br/>
-			<h1 class="text-green-700 font-bold text-2xl inline-flex">{{year}}</h1>
-			
-			<hr class="border-green-800 my-4"/>
-			<h3 class="text-gray-700 text-md tracking-wider font- semibold" style="white-space: pre-line;text-align: pre-line">{{text_card_1}}</h3>
-        </div>
-    </div>
-
-</div>
-
-<div id="card_2" v-if="card_2" class="fixed  inset-0 overflow-auto top-0 h-full w-full z-50 bg-gray-700 bg-opacity-75 items-center mx-auto">
-    <div class="bg-gray-100 mx-4 max-w-2xl w-full overflow-hidden md:mx-auto" style="width: 95%;margin: auto;margin-top: 5%;margin-bottom:10%;">
-        <div class="flex items-center bg-green-600 text-white py-1 px-2">
-            <h1 class="text-lg font-sem ibold tracking-wider font-mono">Month Events Overview</h1>
-            <span id="close" v-on:click="card_2 = false;" class="ml-auto inline-block text-right cursor-pointer text-white px-2 text-lg tracking-wide font-semibold uppercase cursor-pointer">&cross;</span>
-        </div>
-
-        <div class="px-2 py-10 text-center">
-			<div class="flex text-center">
-			<h1 class="text-blue-700 font-bold text-2xl inline-flex">{{month}}</h1> 
-			<h1 class="text-green-700 font-bold text-2xl inline-flex">{{year}}</h1>
-			</div>
-			<hr class="border-green-800 my-4"/>
-			<span class="text-gray-700 text-md tracking-wider font- bold mt-1" style="text-align:left;white-space:pre-line;display:block;"
-																			   v-for="x, key in event_month"><strong>{{key}} {{month}}</strong> <br/>{{x.replace(/,/g,'\n *')}}</span>
-        </div>
-    </div>
-</div>
-<div style="padding:30px"></div>
-</header>
-<script>
 var osmanli_cal = new Vue({
-el: '#app',
+el: '#events',
 	data:{
 		calender: 'Hijri',
 		month: '',
@@ -425,6 +306,7 @@ el: '#app',
 				this.year = this.english_cal.date.getFullYear() + " AD"
 
 			}
+			this.click_month()
 	     },
 	    next_month: function() {
 	
@@ -515,6 +397,3 @@ el: '#app',
 	}
 
 	osmanli_cal.change_date(new Date())
-		</script>
-	</body>
-	</html>
