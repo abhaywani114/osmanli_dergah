@@ -673,7 +673,7 @@ blockquote {
   font-weight: 500;
 }
 .cid-rRCAwhHFKb .nav-link:before {
-  content: "0" counter(number);
+  /*content: "0" counter(number);*/
   display: inline-block;
   opacity: .7;
   font-weight: bold;
